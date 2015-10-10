@@ -4,7 +4,7 @@
 <!-- jQuery -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script type="text/javascript" src="<?php echo $dir_path;?>../assets/javascripts/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <?php if (true) {
    //if page is admin main

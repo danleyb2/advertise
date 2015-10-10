@@ -4,8 +4,8 @@
 
 ?>
 
-<!-- Bootstrap Core CSS -->
-<link href="<?php echo $dir_path;?>assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap min CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <style>
 .main{
