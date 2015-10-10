@@ -1,6 +1,10 @@
 <?php
 ?>
 <head>
+<!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo $dir_path;?>favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo $dir_path;?>favicon.ico" type="image/x-icon">
+
 
    <?php include_once $dir_path.'templates/meta.php';?>
    <?php include_once $dir_path.'templates/css.php';?>
