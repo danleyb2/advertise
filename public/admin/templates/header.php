@@ -9,7 +9,7 @@ $pt='';
    <?php include_once $dir_path.'templates/css.php';?>
 
 
-    <title>Moto Beta|Admin</title>
+    <title><?php echo 'Advertise'?> Beta| Admin</title>
 
 
 

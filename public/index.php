@@ -8,7 +8,7 @@ require_once SITE_ROOT.DS.'helper'.DS.'functions.php';
 
 $debug=0;
 $dir_path='./';
-$page_title='Moto ';
+$page_title='Advertise ';
 
 
 $per_page=6;
