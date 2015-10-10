@@ -1,0 +1,9 @@
+#Zend Studio workspace config
+.settings/*
+.buildpath
+.project
+
+#db schema
+assets/db_schema.sql
+
+#libs
