@@ -62,13 +62,9 @@ $result_set=mysqli_query($database->get_connection(), "SELECT * FROM {$statement
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>Evance copyright 2015</p>
-        </div>
-    </footer>
 
-<?php include SITE_ROOT.DS.'public/admin/templates/js.php';?>
+    <?php include SITE_ROOT.DS.'public/admin/templates/footer.php';?>
+    <?php include SITE_ROOT.DS.'public/admin/templates/js.php';?>
 </body>
 
 </html>
