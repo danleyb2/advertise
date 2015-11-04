@@ -27,16 +27,20 @@ if (isset($_POST['name'])){
     $name=$_POST['name'];
     $price=$_POST['price'];
     $contact=$_POST['contact'];
+    $category=$_POST['category'];
     $age=$_POST['age'];
     $reg=$_POST['reg'];
     $status=$_POST['status'];
     $color=$_POST['color'];
     $location=$_POST['location'];
+    print_prep($_POST);
 
-    $addv=new Add($name,$price,$contact,$age,$reg,$status,$color,$location);
+
+    $addv=new Add($name,$price,$contact,$category,$age,$reg,$status,$color,$location);
     if (isset($_POST['id'])){
         //update
-        $result_set=$database->query_database($addv->update());
+
+        $result_set=$addv->update();
         if ($result_set){
             #$message="Photograph uploaded successfully";
             $message="Add Updated successfully";
@@ -45,10 +49,20 @@ if (isset($_POST['name'])){
         }
     }else{
         //create
-
         //$addv->attach_pic($photo_success);
 
-        $database->query_database($addv->save());
+        if ($_POST['category']==0) {
+            if (isset($_POST['cat'])) {
+                //create category
+                $q='insert into products (name,count) values("'.$_POST['cat'].'",1)';
+                $rs=mysqli_query($database->get_connection(), $q);
+                if ($rs) {
+                    $addv->category=mysqli_insert_id($database->get_connection());
+                }
+            }
+        }
+
+        $addv->save();
         $photo_filename =mysqli_insert_id($database->get_connection());
         $photo=new Photograph();
         $photo->attach_file($_FILES['file_upload']);
@@ -87,12 +101,42 @@ if (isset($_POST['name'])){
         <?php  if(isset($message)){  echo $message;   }  ?>
 
             <form role=form method="post" action="edit.php" enctype="multipart/form-data">
-                <div class="form-group">
-                <label for="pic">Car Pic</label>
-                <input type="file" class="form-control" id="pic" name="file_upload">
+
+            <div class="col-md-12">
+                <div class="form-group col-md-6">
+
+                    <label for="category">Category</label>
+                    <?php
+                    $q='select id,name from products';
+                    $r=mysqli_query($database->get_connection(), $q);
+
+
+                    ?>
+
+                    <select class="form-control" name="category" id="category">
+                    <?php if ($r) {
+                        ?><option value="0" selected="selected">Select a category</option><?php
+                        while ($cat=mysqli_fetch_assoc($r)) { ?>
+                          <option value="<?php echo $cat['id'];?>"><?php echo $cat['name'];?></option>
+                       <?php }
+
+                    } ?>
+
+                    <option value="0">Add New Cat</option>
+                    </select>
                     </div>
+                    <div class="form-group col-md-6">
+                    <label for="category">New Category</label>
+                    <input type="text" class="form-control disabled" value="<?php echo $edit?$add_data['name']:'';?>" name="cat" id="cat">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                <label for="pic">Product Pic</label>
+                <input type="file" class="form-control" id="pic" name="file_upload">
+                </div>
                 <div class="form-group col-md-4">
-                <label for="name">car name</label>
+                <label for="name">Product name</label>
                 <input type="text" class="form-control" value="<?php echo $edit?$add_data['name']:'';?>" name="name" id="name">
                 </div>
                 <div class="form-group col-md-4">
@@ -138,13 +182,7 @@ if (isset($_POST['name'])){
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-
-            <p>Evance copyright 2015</p>
-        </div>
-    </footer>
-
+    <?php include_once SITE_ROOT.DS.'public/admin/templates/footer.php';?>
 
 
 </body>
