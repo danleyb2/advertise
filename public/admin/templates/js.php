@@ -16,7 +16,7 @@ $(document).ready(function(){
 });
 function delete_add(id,doc){
 	  $.ajax({
-      type: "GET",
+      type: "GET",//todo:should be post
       url: '../actions/ajax.php',
       data: {id: id },
       success: function (data) {
