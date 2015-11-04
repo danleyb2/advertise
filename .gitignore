@@ -2,6 +2,8 @@
 .settings/*
 .buildpath
 .project
+#intellij workspace config
+.idea/*
 
 #db schema
 assets/db_schema.sql
