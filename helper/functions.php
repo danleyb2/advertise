@@ -43,14 +43,6 @@ function logEvent($event){
     }
 }
 
-function get_school_id(){
-    if (isset($_SESSION['school'])){
-        return $_SESSION['school']['id'];
-    }else{
-        die('please relogin');
-        //TODO:find a way of getting the school id
-    }
-}
 function include_template($temp=""){
     include(SITE_ROOT.D.'public'.D.'templates'.D.$temp);
 

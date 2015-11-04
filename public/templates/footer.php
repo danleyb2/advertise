@@ -3,6 +3,6 @@
  <footer>
         <div class="container">
 
-            <p>Evance copyright 2015</p>
+            <p style="color: #337ab7;">Nyaundi Brian copyright 2015</p>
         </div>
     </footer>
