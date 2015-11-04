@@ -7,14 +7,15 @@ class Add{
     public $price;
     public $photo_filename;
 
-    public $age,$reg,$location,$color,$status,$contact;
+    public $age,$reg,$location,$color,$status,$contact,$category;
 
-    function __construct($name,$price,$contact,$age,$reg,$status,$color,$location){
+    function __construct($name,$price,$contact,$category,$age,$reg,$status,$color,$location){
         $this->name=$name;
         $this->price=$price;
         $this->age=$age;
         $this->color=$color;
         $this->contact=$contact;
+        $this->category=$category;
         $this->status=$status;
         $this->location=$location;
         $this->reg=$reg;
@@ -33,8 +34,9 @@ class Add{
 
     }
     function save(){
+        global $database;
         $query="insert into advertisements (
-        id,price,created,name,picture_url,creator,contact,age,reg,status,color,location
+        id,price,created,name,picture_url,creator,contact,product_id,age,reg,status,color,location
         ) values (
         NULL,
         $this->price,
@@ -43,14 +45,17 @@ class Add{
         '$this->photo_filename',
         1,
         '$this->contact',
+        $this->category,
         $this->age,
         '$this->reg',
         '$this->status',
         '$this->color',
         '$this->location'
         )";
+        //todo update products counts
+       return  $database->query_database($query);
 
-        return $query;
+
 
     }
     function attach_pic($url){
@@ -62,6 +67,7 @@ class Add{
 
     }
     function update(){
+        global $database;
 
     $query="UPDATE `advertisements` SET
 
@@ -75,7 +81,7 @@ class Add{
         `color`='$this->color',
         `location`='$this->location'
         WHERE `id` = 11";
+    return $database->query_database($query);
 
-        return $query;
     }
 }
