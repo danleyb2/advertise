@@ -21,7 +21,7 @@ function check($name,$pass){
     global $database;
     $query="select * from users where email='$name' and password='$pass'";
     $result_set=mysqli_query($database->get_connection(), $query);
-    echo 'checking: '.$query;
+    //echo 'checking: '.$query;
     if ($result_set) {
         return mysqli_fetch_assoc($result_set);
     }
@@ -38,7 +38,7 @@ if (isset($_POST['name'])) {
         $session->login($data);
         header('location:views/');
     } else {
-        $_SESSION['message'] = "Wrong school name password combination";
+        $_SESSION['message'] = "Wrong email password combination";
 
         $forgot_pass = true;
     }
@@ -57,6 +57,9 @@ include_once SITE_ROOT.DS.'public/admin/templates/header.php';
 		<div class=row>
 			<div class="col-md-4 col-centered">
 				<div class="panel panel-info">
+				<?php if (isset($_SESSION['message'])) { ?>
+				<div class="panel panel-warning"><?php echo $_SESSION['message'];?></div>
+				<?php }?>
 					<div class="panel-heading">
 						<strong>Login</strong>
 					</div>
@@ -65,7 +68,7 @@ include_once SITE_ROOT.DS.'public/admin/templates/header.php';
 
 							<div class=form-group>
 								<label for="username">Email</label>
-								<input id="name" class="form-control" name="name" type="text" placeholder="Your Username or Email">
+								<input id="name" value="<?php echo isset($_POST['name'])?$_POST['name']:'';?>" class="form-control" name="name" type="text" placeholder="Your Username or Email">
 							</div>
 							<div class=form-group>
 								<label for="password">Password</label>
