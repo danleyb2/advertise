@@ -7,5 +7,6 @@
 
 #db schema
 assets/db_schema.sql
+public/images
 
 #libs
