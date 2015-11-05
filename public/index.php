@@ -8,7 +8,7 @@ require_once SITE_ROOT.DS.'helper'.DS.'functions.php';
 
 $debug=0;
 $dir_path='./';
-$page_title='Moto ';
+$page_title='Advertise ';
 
 
 $per_page=12;
@@ -75,7 +75,7 @@ $categories=($categories_rs)?mysqli_fetch_all($categories_rs):false;
 
     <section id="contact">
 	   <div class="container">
-			<div class="row" style="">
+			<div class="row text-center" style="">
                 <?php
                 if (mysqli_num_rows($result_set) != 0) {
                     while ($add = mysqli_fetch_assoc($result_set)) {?>
@@ -103,8 +103,8 @@ $categories=($categories_rs)?mysqli_fetch_all($categories_rs):false;
             $next = $page + 1;
             $totaltpages = $total_pages;
             if ($total_pages > 1) { ?>
-            <div class="col-md-7 center">
-    			<ul class="pagination col-md-12">
+            <div class="col-md-12 text-center">
+    			<ul class="pagination">
     				<li class="disabled">
     				    <a><?php echo "Page $page of $total_pages";?></a>
     				</li>
@@ -112,20 +112,20 @@ $categories=($categories_rs)?mysqli_fetch_all($categories_rs):false;
                      <?php if ($page == 1) {   ?>
                         <li class="disabled">
                             <a	href=<?php echo "{$url}page={$prev}"?>>
-                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <i class="glyphicon glyphicon-chevron-left"></i>
                             </a>
                         </li>
             		 <?php } else { ?>
 
                         <li>
                             <a href=<?php echo "{$url}page=1"?>>
-                                <span	class="glyphicon glyphicon-chevron-left"></span>
+                                <i	class="glyphicon glyphicon-chevron-left"></i>
                             </a>
                         </li>
 
     				    <li>
     				        <a href=<?php echo "{$url}page={$prev}"?>>
-    				            <span   class="glyphicon glyphicon-chevron-left"></span>
+    				            <i   class="glyphicon glyphicon-chevron-left"></i>
     				        </a>
     				    </li>
     	           <?php }?>
@@ -151,18 +151,18 @@ $categories=($categories_rs)?mysqli_fetch_all($categories_rs):false;
                     if ($page != $totaltpages) { ?>
 
                             <li class="waves-effect">
-                                <a href=<?php echo "{$url}page={$next}"?>><i class="material-icons">chevron_right</i></a>
+                                <a href=<?php echo "{$url}page={$next}"?>><i class="glyphicon glyphicon-chevron-right"></i></a>
             				</li>
 
             				<li class="waves-effect">
-            				    <a	href=<?php echo "{$url}page=$totaltpages"?>> <i	class="material-icons">chevron_right</i></a>
+            				    <a	href=<?php echo "{$url}page=$totaltpages"?>> <i	class="glyphicon glyphicon-chevron-right"></i></a>
             				</li>
             				<?php } else { ?>
             				<li class="disabled">
-            				    <a> <i class="material-icons">chevron_right</i></a>
+            				    <a> <i class="glyphicon glyphicon-chevron-right"></i></a>
             				</li>
             				<li class="disabled">
-            				        <a> <i class="material-icons">chevron_right</i></a>
+            				        <a> <i class="glyphicon glyphicon-chevron-right"></i></a>
             				</li>
                     <?php }
 
