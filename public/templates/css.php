@@ -23,6 +23,7 @@ li.active{
 .add_img{
 	width:150px;
 	height:100px;
+	border-radius:3px;
 }
 .add-item{
 	height: 240px;
