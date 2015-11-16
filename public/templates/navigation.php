@@ -15,17 +15,17 @@
             </div>
 
 
-          <form class="navbar-form navbar-left" role="search">
+          <form class="navbar-form navbar-left" role="search" action="index.php">
 
             <div class="form-group">
-                <select class="form-control" id="search-select">
+                <select name="category-s" class="form-control" id="search-select">
 
-                    <option value="0" selected="selected">Search All</option>
+                    <option value="0" <?php //echo isset($_GET['category-s'])?'':'selected="selected"'; ?> >Search All</option>
                     <?php foreach ($categories as $ctg) {?>
-                    <option value="<?php echo $ctg[0];?>"><?php echo $ctg[1];?></option>
+                    <option value="<?php echo $ctg[0];?>" <?php echo (isset($_GET['category-s']) and $_GET['category-s']==$ctg[0])?'selected="selected"':'';?> ><?php echo $ctg[1];?></option>
                     <? }?>
                 </select>
-                <input type="text" class="form-control" id="search-input" placeholder="Search All">
+                <input type="text" <?php echo isset($_GET['name'])?"value=\"$_GET[name]\" ":""; ?> name="name" class="form-control" id="search-input" placeholder="Search All">
             </div>
             <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
           </form>
