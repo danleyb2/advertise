@@ -13,7 +13,13 @@ $page_title='Advertise ';
 
 $per_page=12;
 $table='advertisements';
-$query_count="SELECT COUNT(*) as `num` FROM {$table}";
+$query_count="SELECT COUNT(*) as `num` FROM {$table} ";
+isset($_GET['category']) ? $query_count.=" WHERE product_id=$_GET[category]":'';
+if (isset($_GET['category-s'])) {
+    $query_count.=( $_GET['category-s']!=0)?" WHERE product_id=".$_GET['category-s']." and name LIKE '%$_GET[name]%'":
+    " WHERE name LIKE '%$_GET[name]%'";
+}
+
 $row=mysqli_fetch_row(mysqli_query($database->get_connection(), $query_count));
 $num_rows=$row[0];
 
@@ -28,16 +34,27 @@ $offset=($page-1)*$per_page;
 $statement="$table";
 $order="order by id asc";
 
+if (isset($_GET['name']) and trim($_GET['name'])!='') {
+    $item=$_GET['name'];
+    $categories=$_GET['category-s'];
+    if ($categories==0) {
+        $data_q="SELECT * FROM advertisements WHERE name LIKE '%$item%' LIMIT {$offset},{$per_page}";
+    }else{
+        $data_q="SELECT * FROM advertisements WHERE name LIKE '%$item%' AND product_id=$categories LIMIT {$offset},{$per_page}";
+    }
 
+}else{
 
 if (!isset($_GET['category'])) {
     $data_q= "SELECT * FROM {$statement} LIMIT {$offset},{$per_page}";
+    $cat_nav='';
 }else{
     $category=$_GET['category'];
+    $cat_nav="where advertisements.product_id=$category";
     $data_q= "SELECT * FROM {$statement} WHERE product_id=$category {$order} LIMIT {$offset},{$per_page}";
 }
 
-
+}
 $result_set=mysqli_query($database->get_connection(),$data_q);
 
 ?>
@@ -54,7 +71,7 @@ join products on
 
 products.id=advertisements.product_id
 
-GROUP by advertisements.product_id limit 13';
+GROUP by advertisements.product_id ';#limit 17
 //$q='select id,name,count from products limit 10';
 $categories_rs=mysqli_query($database->get_connection(), $q);
 $categories=($categories_rs)?mysqli_fetch_all($categories_rs):false;
@@ -97,6 +114,9 @@ $categories=($categories_rs)?mysqli_fetch_all($categories_rs):false;
             } else {
                 $category = $_GET['category'];
                 $url = '?category=' . $category . '&';
+            }
+            if (isset($_GET['category-s'])) {
+                $url.="category-s=".$_GET['category-s']."&name=$_GET[name]&";
             }
 
             $prev = $page - 1;
