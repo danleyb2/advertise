@@ -52,7 +52,7 @@ include_once SITE_ROOT.DS.'public/admin/templates/header.php';
 ?>
 
 <body>
-<?php include_once SITE_ROOT.DS.'public/templates/navigation.php';?>
+<?php //include_once SITE_ROOT.DS.'public/templates/navigation.php';?>
 <div class="container main">
 		<div class=row>
 			<div class="col-md-4 col-centered">
@@ -77,6 +77,7 @@ include_once SITE_ROOT.DS.'public/admin/templates/header.php';
 
 							<button type="submit" class="btn btn-default">sign in</button>
 							<a href="recover.php">forgot password?</a>
+							<a href="../">View Site.</a>
 
 						</form>
 					</div>
