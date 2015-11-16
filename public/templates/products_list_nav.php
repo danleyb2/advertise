@@ -20,10 +20,10 @@
 
           <?php }?>
       </ul>
-      <a href="#" id="more-cat" style="position: absolute; bottom: 15px;" class="">
+      <a href="#" id="more-cat" style="position: absolute; bottom: 15px;" class="hide">
        More <i class="glyphicon glyphicon-arrow-down "></i>
       </a>
-      <a href="#" id="less-cat" style="position: absolute; bottom: 15px;right: 15px;" class="">
+      <a href="#" id="less-cat" style="position: absolute; bottom: 15px;right: 15px;" class="hide">
        All <i class="glyphicon glyphicon-circle-arrow-down "></i>
       </a>
     </div><!-- /.navbar-collapse -->
