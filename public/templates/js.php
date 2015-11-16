@@ -20,8 +20,12 @@
       function moreAvailable(){
             el=$('#bs-example-navbar-collapse-2 ul')[0];
             return(el.offsetHeight<el.scrollHeight ||
-                    el.offsetWidth<el.scrollWidth)
+                    el.offsetWidth<el.scrollWidth);
         }
+      if(moreAvailable()){
+	  $('#more-cat').toggleClass('hide');
+	  $('#less-cat').toggleClass('hide');
+      //}else{
 
         $('#more-cat').click(function (evt) {
             evt.preventDefault();
@@ -61,4 +65,5 @@
             }
 
         });
+      }
 </script>
