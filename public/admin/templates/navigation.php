@@ -11,7 +11,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top"><?php echo 'Advertise'?><span style="font-size: 10px;color:blue;">Beta</span></a>
+
+                <a class="navbar-brand page-scroll" href="#">Advertise <span style="font-size: 10px;color:blue;">Beta</span></a>
+
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
